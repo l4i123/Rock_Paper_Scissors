@@ -34,7 +34,7 @@ class GamePanel extends JPanel {
     // Constructor
     public GamePanel() {
         this.setPreferredSize(new java.awt.Dimension(screenWidth, screenHeight));
-        this.setLayout(null); // Setting layout to null to manually position components
+        this.setLayout(null); // to position components
 
         // Initialize buttons
         button1 = new JButton("Камък");
@@ -69,34 +69,39 @@ class GamePanel extends JPanel {
         this.add(button2);
         this.add(button3);
 
-        // Create the result label
+        // what the pc has choosen
         resultLabel = new JLabel("");
         resultLabel.setBounds(100, 100, 400, 50);
         resultLabel.setFont(new Font("Arial", Font.BOLD, 20));
         this.add(resultLabel);
 
+        //creating label win/lost 
         resultWin = new JLabel("");
         resultWin.setBounds(180, 300, 400, 50);
         resultWin.setFont(new Font("Arial", Font.BOLD, 24));
         this.add(resultWin);
 
+        //finaly who won
         finalWin = new JLabel("");
         finalWin.setBounds(150, 350, 400, 50);
         finalWin.setFont(new Font("Arial", Font.BOLD, 24));
         this.add(finalWin);
 
+        //the score during the game
         scoreLabel = new JLabel("Играч: 0 - Компютър: 0");
         scoreLabel.setBounds(100, 50, 400, 50);
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Set font size
         this.add(scoreLabel);
     }
 
+    //painting the components
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // You can use Graphics2D here for more advanced drawing
+        
     }
 
+    //the pc chosing his hand
     public void computereChoice(String playerChoice) {
         String[] option = {"Камък", "Ножица", "Хартия"};
         Random random = new Random();
@@ -107,6 +112,7 @@ class GamePanel extends JPanel {
         winnerLogic(playerChoice, pcChoice);
     }
 
+    //the logic
     public void winnerLogic(String playerChoice, String pcChoice) {
         if (playerChoice.equals(pcChoice)) {
             resultWin.setText("<html>Равно</html>");
@@ -132,7 +138,7 @@ class GamePanel extends JPanel {
         }
     }
 
-    // Method to disable buttons
+    // turn off button, the game stops but doesn't close
     public void disableButtons() {
         button1.setEnabled(false);
         button2.setEnabled(false);
